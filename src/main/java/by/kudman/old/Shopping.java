@@ -36,7 +36,9 @@ public class Shopping {
             shopList.add(product);
         }
     }
-
+/*
+printer
+ */
     public static void printList(List<Product> list) {
         int i =1;
         Formatter form = new Formatter();
