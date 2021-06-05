@@ -1,10 +1,9 @@
 package by.kudman.old;
 
-import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
-import java.util.Scanner;
 
 public class Shopping {
     private static List<Product> shopList;
@@ -13,32 +12,35 @@ public class Shopping {
         return Shopping.shopList;
     }
 
-    public static void setShopList() throws IOException {
-        File list = new File("shop.txt");
-        List<String> lines = new ArrayList<>();
-        try (FileReader fileReader = new FileReader(list);
-             BufferedReader bReader = new BufferedReader(fileReader)) {
-            String line = bReader.readLine();
-            while (line != null) {
-                lines.add(line);
-                line = bReader.readLine();
-            }
-        }
+    public static void setShopList(){
+        Integer count = 1;
         shopList = new ArrayList<>();
-        for (String line : lines) {
-            Scanner scanner = new Scanner(line);
-            Product product = new Product();
-            product.setName(scanner.next());
-            product.setType(scanner.next());
-            product.setArticle(scanner.next());
-            product.setSize(scanner.next());
-            product.setPrice(scanner.nextInt());
-            shopList.add(product);
+        try(
+       Connection connect = DriverManager.getConnection(
+               "jdbc:postgresql://localhost:5432/postgres",
+               "postgres",
+               "postgres")){
+        PreparedStatement ps = connect.prepareStatement("select\n" +
+                "pl.product_name,p.id,s.size,pt.type,p.amount,pl.price\n" +
+                "from product_list as pl\n" +
+                "left join product as p on pl.id = p.product_list_id\n" +
+                "left join product_types pt on p.product_type_id = pt.id\n" +
+                "left join sizes s on p.size_id = s.id\n");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Product cloth = new Product();
+                cloth.setName(rs.getString(1));
+                cloth.setArticle(String.valueOf(rs.getInt(2)));
+                cloth.setSize(rs.getString(3));
+                cloth.setType(rs.getString(4));
+                cloth.setPrice(rs.getInt(6));
+                shopList.add(cloth);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
-/*
-printer
- */
+
     public static void printList(List<Product> list) {
         int i =1;
         Formatter form = new Formatter();

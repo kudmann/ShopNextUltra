@@ -3,9 +3,6 @@ package by.kudman.old;
 import java.io.*;
 import java.util.*;
 
-/*
-User contains fields login/password and cart with operating methods
-*/
 public class User implements Serializable {
     private String login;
     private String password;

@@ -1,16 +1,9 @@
 package by.kudman.old;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.sql.*;
 import java.util.List;
 import java.util.Scanner;
 
-/*
-this class contains operating logging in methods and list of users with methods
-that allowed to create new users
- */
 public class LoggingIn {
     private static User loggedUser;
     private static boolean loggedIn;
@@ -43,34 +36,24 @@ public class LoggingIn {
         userList.add(user);
         user.setCart();
         user.setThings();
+
+        try (
+                Connection connect = DriverManager.getConnection(
+                        "jdbc:postgresql://localhost:5432/postgres",
+                        "postgres",
+                        "postgres")) {
+            PreparedStatement ps = connect.prepareStatement("" +
+                    "insert into user_list(login,password) values ('"
+                    +user.getLogin()+"','"+user.getPassword()+"') ");
+           ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         System.out.println("New user set successfully");
         return true;
     }
 
-    /*
-    method returns true if user creation successful
-    and false in not (the user canceled operation or entered login match with saved in userList)
-     */
-    public static void defaultUserList() {
-        File file = new File("users.data");
-        try (FileOutputStream fileOStream = new FileOutputStream(file, true);
-             ObjectOutputStream objOStream = new ObjectOutputStream(fileOStream)) {
-            objOStream.writeInt(5);
-            for (int i = 0; i < 5; i++) {
-                String defaultUserName = "user" + i;
-                String defaultPassword = "111" + i;
-                objOStream.writeObject(new User(defaultUserName,defaultPassword));
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    /*
-    method initiate userList and fills it with 5 default users:
-    user0-1110, user1-1111, user2-1112, user3-1113, user4-1114
-    is should calls when app starts
-     */
     public static boolean loginMatch(String login) {
         for (User user : userList) {
             if (user.getLogin().equals(login)) {

@@ -56,7 +56,6 @@ public class Product {
 
     @Override
     public String toString() {
-      //  return name + "|" + type + "|" + article + "|" + size + "|" + price + "p.";
         Formatter form = new Formatter();
         Locale locale = new Locale("US");
         NumberFormat currency = NumberFormat.getCurrencyInstance(locale);
