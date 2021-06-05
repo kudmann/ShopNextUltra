@@ -29,4 +29,5 @@ public class Serial implements Serializable {
         System.out.println("User list loading successful");
         return userList;
     }
+
 }

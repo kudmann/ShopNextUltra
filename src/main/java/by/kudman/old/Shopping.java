@@ -1,5 +1,7 @@
 package by.kudman.old;
 
+import by.kudman.newone.DataBase;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Formatter;
@@ -13,21 +15,15 @@ public class Shopping {
     }
 
     public static void setShopList(){
-        Integer count = 1;
         shopList = new ArrayList<>();
-        try(
-       Connection connect = DriverManager.getConnection(
-               "jdbc:postgresql://localhost:5432/postgres",
-               "postgres",
-               "postgres")){
-        PreparedStatement ps = connect.prepareStatement("select\n" +
+        try{
+        ResultSet rs = DataBase.sqlScriptQuery(Shop.connection,"select\n" +
                 "pl.product_name,p.id,s.size,pt.type,p.amount,pl.price\n" +
                 "from product_list as pl\n" +
                 "left join product as p on pl.id = p.product_list_id\n" +
                 "left join product_types pt on p.product_type_id = pt.id\n" +
                 "left join sizes s on p.size_id = s.id\n");
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+                while(rs.next()){
                 Product cloth = new Product();
                 cloth.setName(rs.getString(1));
                 cloth.setArticle(String.valueOf(rs.getInt(2)));
