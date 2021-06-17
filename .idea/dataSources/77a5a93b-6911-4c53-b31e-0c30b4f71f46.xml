@@ -785,13 +785,13 @@ false Z
 false Zulu
 true posixrules
 </TimeZones>
-      <StartupTime>1622883223</StartupTime>
+      <StartupTime>1623945868</StartupTime>
     </root>
     <database id="2" parent="1" name="postgres">
       <ObjectId>13318</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>538</IntrospectionStateNumber>
+      <IntrospectionStateNumber>556</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16393|16395|1
 sequence|table|16401|16403|1
@@ -868,7 +868,7 @@ UC/10
 </Acl>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>539</IntrospectionStateNumber>
+      <IntrospectionStateNumber>557</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="17" parent="2" name="adminpack">
@@ -1009,7 +1009,7 @@ UC/10
     <table id="35" parent="16" name="product">
       <ObjectId>16446</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>519</StateNumber>
+      <StateNumber>555</StateNumber>
     </table>
     <table id="36" parent="16" name="product_list">
       <ObjectId>16395</ObjectId>
@@ -1067,7 +1067,13 @@ UC/10
       <StateNumber>519</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="45" parent="35" name="product_pkey">
+    <column id="45" parent="35" name="description">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>555</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="46" parent="35" name="product_pkey">
       <ObjectId>16450</ObjectId>
       <StateNumber>519</StateNumber>
       <ColNames>id</ColNames>
@@ -1077,14 +1083,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="46" parent="35" name="product_pkey">
+    <key id="47" parent="35" name="product_pkey">
       <ObjectId>16451</ObjectId>
       <StateNumber>519</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>product_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="47" parent="35" name="product_product_type_id_fkey">
+    <foreign-key id="48" parent="35" name="product_product_type_id_fkey">
       <ObjectId>16452</ObjectId>
       <StateNumber>519</StateNumber>
       <ColNames>product_type_id</ColNames>
@@ -1094,7 +1100,7 @@ UC/10
       <RefKeyName>product_types_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="48" parent="35" name="product_size_id_fkey">
+    <foreign-key id="49" parent="35" name="product_size_id_fkey">
       <ObjectId>16457</ObjectId>
       <StateNumber>519</StateNumber>
       <ColNames>size_id</ColNames>
@@ -1104,7 +1110,7 @@ UC/10
       <RefKeyName>sizes_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="49" parent="35" name="product_product_list_id_fkey">
+    <foreign-key id="50" parent="35" name="product_product_list_id_fkey">
       <ObjectId>16462</ObjectId>
       <StateNumber>519</StateNumber>
       <ColNames>product_list_id</ColNames>
@@ -1114,7 +1120,7 @@ UC/10
       <RefKeyName>product_list_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="50" parent="36" name="id">
+    <column id="51" parent="36" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1122,20 +1128,20 @@ UC/10
       <DefaultExpression>nextval(&apos;product_list_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="51" parent="36" name="product_name">
+    <column id="52" parent="36" name="product_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>492</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="52" parent="36" name="price">
+    <column id="53" parent="36" name="price">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>492</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="53" parent="36" name="product_list_pkey">
+    <index id="54" parent="36" name="product_list_pkey">
       <ObjectId>16399</ObjectId>
       <StateNumber>492</StateNumber>
       <ColNames>id</ColNames>
@@ -1145,14 +1151,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="54" parent="36" name="product_list_pkey">
+    <key id="55" parent="36" name="product_list_pkey">
       <ObjectId>16400</ObjectId>
       <StateNumber>492</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>product_list_pkey</UnderlyingIndexName>
     </key>
-    <column id="55" parent="37" name="id">
+    <column id="56" parent="37" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1160,14 +1166,14 @@ UC/10
       <DefaultExpression>nextval(&apos;product_types_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="56" parent="37" name="type">
+    <column id="57" parent="37" name="type">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>493</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="57" parent="37" name="product_types_pkey">
+    <index id="58" parent="37" name="product_types_pkey">
       <ObjectId>16407</ObjectId>
       <StateNumber>493</StateNumber>
       <ColNames>id</ColNames>
@@ -1177,14 +1183,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="58" parent="37" name="product_types_pkey">
+    <key id="59" parent="37" name="product_types_pkey">
       <ObjectId>16408</ObjectId>
       <StateNumber>493</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>product_types_pkey</UnderlyingIndexName>
     </key>
-    <column id="59" parent="38" name="id">
+    <column id="60" parent="38" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1192,14 +1198,14 @@ UC/10
       <DefaultExpression>nextval(&apos;sizes_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="60" parent="38" name="size">
+    <column id="61" parent="38" name="size">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>494</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="61" parent="38" name="sizes_pkey">
+    <index id="62" parent="38" name="sizes_pkey">
       <ObjectId>16415</ObjectId>
       <StateNumber>494</StateNumber>
       <ColNames>id</ColNames>
@@ -1209,14 +1215,14 @@ UC/10
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="62" parent="38" name="sizes_pkey">
+    <key id="63" parent="38" name="sizes_pkey">
       <ObjectId>16416</ObjectId>
       <StateNumber>494</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sizes_pkey</UnderlyingIndexName>
     </key>
-    <column id="63" parent="39" name="id">
+    <column id="64" parent="39" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1224,21 +1230,21 @@ UC/10
       <DefaultExpression>nextval(&apos;user_list_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="64" parent="39" name="login">
+    <column id="65" parent="39" name="login">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>529</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="65" parent="39" name="password">
+    <column id="66" parent="39" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>529</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="66" parent="39" name="email">
+    <column id="67" parent="39" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>529</StateNumber>
